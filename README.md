@@ -5,7 +5,7 @@
 
 A custom, dependency-free Java library for Matrix representation and linear algebra operations. I built this project to demonstrate a deep understanding of Object-Oriented Programming, algorithm design, and memory-efficient data structures in Java.
 
-## 🚀 Why This Project? (For Recruiters)
+## 🚀 Why This Project? 
 
 When applying for internships, I wanted to showcase more than just basic CRUD operations. This project demonstrates my ability to:
 * **Optimize Data Structures:** Instead of using a standard `double[][]` array which scatters data in memory (array of arrays), the matrix data is flattened into a single contiguous 1D `double[]` array. This provides better spatial locality and CPU cache performance.
