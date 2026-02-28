@@ -1,43 +1,34 @@
-# Java Linear Algebra: Core Matrix Library
+# Java Matrix Library
 
 ![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![JUnit](https://img.shields.io/badge/JUnit-Tested-25A162?style=for-the-badge&logo=junit5&logoColor=white)
 
-A custom, dependency-free Java library for Matrix representation and linear algebra operations. I built this project to demonstrate a deep understanding of Object-Oriented Programming, algorithm design, and memory-efficient data structures in Java.
+A lightweight, dependency-free Java library for matrix manipulation and linear algebra operations. 
 
-## 🚀 Why This Project? 
+## Overview
+This project provides a custom `Matrix` class designed for mathematical accuracy and memory efficiency. It handles fundamental mathematical operations, matrix transformations, and more complex algebraic computations like Gaussian Elimination and Determinants.
 
-When applying for internships, I wanted to showcase more than just basic CRUD operations. This project demonstrates my ability to:
-* **Optimize Data Structures:** Instead of using a standard `double[][]` array which scatters data in memory (array of arrays), the matrix data is flattened into a single contiguous 1D `double[]` array. This provides better spatial locality and CPU cache performance.
-* **Implement Complex Algorithms:** Features mathematical algorithms written from scratch, including **Gaussian Elimination with partial pivoting** and **Determinant calculation**.
-* **Practice Test-Driven Development (TDD):** The core logic is backed by extensive JUnit testing covering edge cases, bounds checking, and math correctness.
-* **Handle Edge Cases Gracefully:** Custom exception handling prevents invalid mathematical operations (e.g., matrix dimension mismatches, division by zero), and the constructor elegantly pads jagged arrays with zeros.
+## Features
+* **Standard Operations:** Addition, subtraction, multiplication, and division (both scalar and element-wise).
+* **Linear Algebra:** Dot product (matrix multiplication), Frobenius norm.
+* **Advanced Math:** Gaussian Elimination (Row Echelon Form) and Determinant calculation.
+* **Utility:** Generation of Identity (`eye`) and Random matrices.
+* **Robust Initialization:** Safely parses 2D arrays, automatically padding jagged arrays with zeros to ensure a perfect rectangular shape.
 
-## ⚙️ Features
+## Technical Details: Memory Optimization
+Instead of using a traditional array of arrays (`double[][]`), the underlying matrix data is stored in a **flattened 1D array (`double[]`)**. 
 
-* **Initialization:** Create matrices of specific shapes, identity matrices (`eye`), random matrices, or parse 2D jagged arrays.
-* **Element-wise Operations:** Addition, Subtraction, Multiplication, and Division (matrix-matrix and matrix-scalar).
-* **Matrix Operations:**
-  * Dot Product (Matrix Multiplication)
-  * Reshaping dimensions
-  * Frobenius Norm calculation
-  * Gaussian Elimination (row echelon form)
-  * Determinant calculation ($O(N^3)$ complexity using Gaussian elimination)
+This approach ensures contiguous memory allocation, which significantly improves CPU cache spatial locality and overall performance during heavy mathematical operations. Indexing is handled transparently via the formula `i * cols + j`.
 
-## 🛠️ Usage Example
+## Usage
 
+### Initialization
 ```java
-// Initialize matrices
+// From a 2D array
 Matrix a = new Matrix(new double[][]{{1, 2}, {3, 4}});
-Matrix b = Matrix.eye(2); // 2x2 Identity Matrix
 
-// Perform element-wise operations
-Matrix added = a.add(b); 
-Matrix scalarMul = a.mul(2.5);
+// Generate a 3x3 Identity matrix
+Matrix b = Matrix.eye(3);
 
-// Matrix Multiplication (Dot Product)
-Matrix product = a.dot(b);
-
-// Advanced Math
-double det = a.determinant(); // Returns -2.0
-Matrix echelonForm = a.GaussianElimination();
+// Generate a 2x4 Random matrix
+Matrix c = Matrix.random(2, 4);
